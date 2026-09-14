@@ -80,7 +80,7 @@ Before running the application, make sure you have:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/ecommerce-site.git
+git clone https://github.com/MOHSINEDAHNAOUI/shendy-ecommerce.git
 cd ecommerce-site
 ```
 
