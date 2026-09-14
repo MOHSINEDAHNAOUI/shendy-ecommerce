@@ -1,0 +1,325 @@
+@extends('layouts.app')
+
+@section('title', 'MarketHub | Big Brand Electronics & Fashion')
+
+@section('content')
+<!-- Hero Slider Section -->
+<section class="hero-slider-section mb-5" data-aos="fade-zoom-in">
+    <div class="swiper swiper-hero">
+        <div class="swiper-wrapper">
+            <!-- Slide 1: Christmas Sale -->
+            <div class="swiper-slide" style="background-image: url('{{ asset('images/banners/christmas_sale.png') }}'); background-size: cover; background-position: center;">
+                <div class="hero-overlay d-flex align-items-center w-100 h-100">
+                    <div class="container">
+                        <div class="hero-content" style="max-width: 650px;">
+                            <span class="badge bg-danger mb-3 px-3 py-2 rounded-pill fw-bold text-uppercase shadow-sm">Limited Time</span>
+                            <h1 class="display-2 fw-800 text-white mb-3" style="line-height: 1.1; text-shadow: 2px 2px 10px rgba(0,0,0,0.3);">Grand Christmas <br><span class="text-primary">Sale Event</span></h1>
+                            <p class="lead text-white mb-4 fw-500" style="font-size: 1.25rem;">Don't miss out on our biggest holiday discounts. Premium electronics and fashion for everyone.</p>
+                            <a href="{{ route('home') }}?min_price=0&max_price=500" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow-lg" style="border-radius: 12px; font-size: 1.1rem;">
+                                <i class="bi bi-cart-fill me-2"></i> Shop Today
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Tech Deals -->
+            <div class="swiper-slide" style="background-image: url('{{ asset('images/banners/tech_deals.png') }}'); background-size: cover; background-position: center;">
+                <div class="hero-overlay d-flex align-items-center w-100 h-100">
+                    <div class="container">
+                        <div class="hero-content" style="max-width: 650px;">
+                            <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill fw-bold text-uppercase shadow-sm">Tech Mega Deals</span>
+                            <h1 class="display-2 fw-800 text-white mb-3" style="line-height: 1.1;">Next-Gen <br><span class="text-primary">Innovations</span></h1>
+                            <p class="lead text-white mb-4 fw-500" style="font-size: 1.25rem;">Upgrade your gear with the latest laptops, smartphones, and accessories at revolutionary prices.</p>
+                            <a href="{{ route('home') }}?category=1" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow-lg" style="border-radius: 12px; font-size: 1.1rem;">
+                                <i class="bi bi-cpu-fill me-2"></i> Explore Tech
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: New Collection -->
+            <div class="swiper-slide" style="background-image: url('{{ asset('images/banners/new_collection.png') }}'); background-size: cover; background-position: center;">
+                <div class="hero-overlay d-flex align-items-center w-100 h-100" style="background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 60%, transparent 100%);">
+                    <div class="container">
+                        <div class="hero-content" style="max-width: 650px;">
+                            <span class="badge bg-dark mb-3 px-3 py-2 rounded-pill fw-bold text-uppercase shadow-sm">Winter 2026</span>
+                            <h1 class="display-2 fw-800 text-dark mb-3" style="line-height: 1.1;">Elegance <br><span class="text-primary">Redefined</span></h1>
+                            <p class="lead text-dark mb-4 fw-600" style="font-size: 1.25rem;">Discover the new arrivals that are setting the standard for premium lifestyle and fashion.</p>
+                            <a href="{{ route('home') }}?category=2" class="btn btn-dark btn-lg px-5 py-3 fw-bold shadow-lg" style="border-radius: 12px; font-size: 1.1rem;">
+                                <i class="bi bi-stars me-2"></i> View New Arrivals
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+<div class="row g-4">
+    <!-- Sidebar Filters -->
+    <div class="col-lg-3">
+        <div class="card border-0 shadow-sm p-4 rounded-4 sticky-top" style="top: 100px; z-index: 10;">
+            <h5 class="fw-800 mb-4 d-flex align-items-center">
+                <i class="bi bi-filter-right me-2 text-primary"></i> Filters
+            </h5>
+
+            <form id="filter-form">
+                <!-- Categories -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold small text-uppercase text-muted mb-3">Category</label>
+                    <select name="category" class="form-select border-0 bg-light shadow-none py-2 px-3" style="border-radius: 10px;">
+                        <option value="">All Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Price Range -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold small text-uppercase text-muted mb-3">Price Range</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="number" name="min_price" class="form-control border-0 bg-light shadow-none text-center" placeholder="Min" style="border-radius: 10px; font-size: 0.85rem;">
+                        <span class="text-muted">-</span>
+                        <input type="number" name="max_price" class="form-control border-0 bg-light shadow-none text-center" placeholder="Max" style="border-radius: 10px; font-size: 0.85rem;">
+                    </div>
+                </div>
+
+                <!-- Trending / New Switches -->
+                <div class="mb-4 pt-2">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input shadow-none" type="checkbox" id="trendingSwitch">
+                        <label class="form-check-label small fw-600" for="trendingSwitch">Trending Now</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input shadow-none" type="checkbox" id="newArrivalsSwitch">
+                        <label class="form-check-label small fw-600" for="newArrivalsSwitch">New Arrivals</label>
+                    </div>
+                </div>
+
+                <button type="reset" class="btn btn-link text-muted p-0 small text-decoration-none" id="reset-filters">
+                    <i class="bi bi-x-circle me-1"></i> Clear all filters
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Grid Area -->
+    <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h2 class="fw-800 text-dark mb-1" style="letter-spacing: -1px;">Featured Collections</h2>
+                <p class="text-muted small mb-0">Discover our handpicked premium selection for your lifestyle.</p>
+            </div>
+            <div class="d-none d-md-flex align-items-center gap-3">
+                <div class="dropdown">
+                    <button class="btn btn-white bg-white border-0 shadow-sm px-3 py-2 small d-flex align-items-center gap-2 rounded-3" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 600;">
+                        <i class="bi bi-sort-down"></i> Sort by: Featured
+                    </button>
+                    <ul class="dropdown-menu border-0 shadow-lg p-2 rounded-3">
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="#">Featured</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="#">Price: Low to High</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="#">Price: High to Low</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="#">Newest First</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="product-grid-container" class="position-relative">
+            @include('partials.product-grid')
+            
+            <!-- Loading Spinner -->
+            <div id="grid-loader" class="position-absolute top-0 start-0 w-100 h-100 d-none align-items-center justify-content-center" style="background: rgba(255,255,255,0.7); z-index: 5; border-radius: 20px;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterForm = document.getElementById('filter-form');
+    const searchInput = document.querySelector('.search-input'); // Main header search input
+    const gridContainer = document.getElementById('product-grid-container');
+    const loader = document.getElementById('grid-loader');
+    const resultsCount = document.getElementById('results-count');
+    
+    let debounceTimer;
+
+    function fetchProducts() {
+        const formData = new FormData(filterForm);
+        const params = new URLSearchParams(formData);
+        
+        if (searchInput && searchInput.value) {
+            params.append('q', searchInput.value);
+        }
+
+        loader.classList.remove('d-none');
+        loader.classList.add('d-flex');
+        
+        fetch(`{{ route('home') }}?${params.toString()}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.text())
+        .then(html => {
+            gridContainer.innerHTML = html;
+            gridContainer.appendChild(loader); // Re-append loader for next use
+            loader.classList.add('d-none');
+            loader.classList.remove('d-flex');
+            
+            // Sync URL without reload
+            window.history.pushState({}, '', `{{ route('home') }}?${params.toString()}`);
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            loader.classList.add('d-none');
+        });
+    }
+
+    // Live search as you type
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(fetchProducts, 500);
+        });
+        
+        // Prevent form submission if in header
+        const searchForm = searchInput.closest('form');
+        if (searchForm) {
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                fetchProducts();
+            });
+        }
+    }
+
+    // Filter changes
+    filterForm.addEventListener('change', fetchProducts);
+    
+    // Price input debouncing
+    filterForm.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(fetchProducts, 1000);
+        });
+    });
+
+    // Reset filters
+    document.getElementById('reset-filters').addEventListener('click', function() {
+        setTimeout(fetchProducts, 10);
+    });
+
+    // Handle AJAX pagination clicks
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.ajax-pagination a')) {
+            e.preventDefault();
+            const url = new URL(e.target.closest('a').href);
+            fetchProductsWithUrl(url.toString());
+        }
+    });
+
+    function fetchProductsWithUrl(url) {
+        loader.classList.remove('d-none');
+        loader.classList.add('d-flex');
+        
+        fetch(url, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.text())
+        .then(html => {
+            gridContainer.innerHTML = html;
+            gridContainer.appendChild(loader);
+            loader.classList.add('d-none');
+            window.scrollTo({ top: gridContainer.offsetTop - 120, behavior: 'smooth' });
+        });
+    }
+});
+</script>
+
+<style>
+    .swiper-button-next, .swiper-button-prev {
+        color: #ff4400 !important;
+        background: rgba(255,255,255,0.9);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+        background: #ff4400;
+        color: #fff !important;
+    }
+    .swiper-pagination-bullet-active {
+        background: #ff4400 !important;
+    }
+    .hero-slider-section {
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    .swiper-hero {
+        width: 100%;
+        height: 520px; /* Solid height for impact */
+    }
+    .hero-overlay {
+        background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+        z-index: 2;
+        padding: 0 10%;
+    }
+    .hero-content {
+        transition: transform 0.6s ease;
+    }
+    .swiper-slide-active .hero-content {
+        transform: scale(1.02);
+    }
+    
+    .section-title {
+        font-weight: 800;
+        background: linear-gradient(90deg, #222 0%, #444 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .form-switch .form-check-input:checked {
+        background-color: #ff4400;
+        border-color: #ff4400;
+    }
+    .sticky-top {
+        z-index: 100;
+    }
+    @media (max-width: 991px) {
+        .swiper-hero {
+            height: 380px;
+        }
+        .hero-overlay {
+            background: rgba(0,0,0,0.6);
+            padding: 0 5%;
+            text-align: center;
+        }
+        .hero-content {
+            margin: 0 auto;
+        }
+        .display-2 {
+            font-size: 2.2rem;
+        }
+        .sticky-top {
+            position: relative;
+            top: 0 !important;
+            margin-bottom: 2rem;
+        }
+    }
+</style>
+@endsection

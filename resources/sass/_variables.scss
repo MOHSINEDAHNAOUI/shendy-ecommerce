@@ -1,0 +1,60 @@
+// Design tokens inspired by modern marketplaces (AliExpress / Temu)
+
+// Colors
+$color-bg: #f7f8fa;
+$color-surface: #ffffff;
+$color-primary: #0d6efd; // Standard Blue
+$color-secondary: #222222; // Deep charcoal for text
+$color-accent: #0a58ca; // Darker Blue for highlights
+$color-muted: #888888;
+$color-success: #00b53d;
+$color-danger: #fa3434;
+
+// Bootstrap color mapping
+$primary: $color-primary;
+$secondary: $color-secondary;
+$success: $color-success;
+$danger: $color-danger;
+$body-bg: $color-bg;
+$body-color: $color-secondary;
+
+// Gradients
+$gradient-premium: linear-gradient(90deg, #0d6efd 0%, #0a58ca 100%);
+$gradient-dark: linear-gradient(135deg, #434343 0%, #000000 100%);
+
+// Typography
+$font-family-header: 'Inter', system-ui, -apple-system, sans-serif;
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+$font-size-base: 0.9375rem; // ~15px for better density
+$line-height-base: 1.5;
+
+// Spacing
+$space-xxs: 4px;
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-xxl: 48px;
+
+// Border radius
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-full: 9999px;
+
+// Elevation (Shadows)
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+// Transitions & Easing
+$ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: all 0.3s $ease-default;

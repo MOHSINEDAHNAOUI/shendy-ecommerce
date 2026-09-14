@@ -1,0 +1,149 @@
+// Import web font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+// Variables (design tokens)
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Professional Reset & Global Styles
+html {
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	background-color: #f7f9fc;
+	color: #1a1a1a;
+}
+
+// Typography Enhancements
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	color: #111;
+}
+
+// Header Refinement (Sticky & Glassmorphism)
+header.site-header {
+	background: rgba(255, 255, 255, 0.9);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	padding: 1.25rem 0;
+	position: sticky;
+	top: 0;
+	z-index: 1050;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.logo {
+	font-weight: 800;
+	font-size: 1.75rem;
+	letter-spacing: -1.5px;
+	color: #222;
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+
+.logo:hover {
+	color: #ff4400;
+}
+
+// Search Bar Professionalism
+.search-container {
+	.search-input {
+		background: #f1f3f6 !important;
+		border: 2px solid transparent !important;
+		border-radius: 12px !important;
+		padding: 0.75rem 1.25rem !important;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		font-size: 0.9rem;
+	}
+
+	.search-input:focus {
+		background: #fff !important;
+		border-color: #ff4400 !important;
+		box-shadow: 0 0 0 4px rgba(255, 68, 0, 0.1) !important;
+	}
+
+	.search-btn {
+		background: #222;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+		padding: 0.5rem 1.5rem;
+		margin-left: -55px;
+		font-weight: 700;
+		font-size: 0.8rem;
+		transition: all 0.3s ease;
+		z-index: 5;
+	}
+
+	.search-btn:hover {
+		background: #ff4400;
+	}
+}
+
+// Modern Navigation
+nav ul li a {
+	color: #555;
+	font-weight: 600;
+	font-size: 0.9rem;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	padding: 0.5rem;
+}
+
+nav ul li a:hover {
+	color: #ff4400;
+}
+
+// Global Card Styling
+.card {
+	border: none;
+	border-radius: 20px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+	overflow: hidden;
+}
+
+// Buttons
+.btn-primary {
+	background: linear-gradient(90deg, #ff9000 0%, #ff4400 100%);
+	border: none;
+	padding: 0.75rem 1.5rem;
+	font-weight: 700;
+	border-radius: 12px;
+	box-shadow: 0 4px 15px rgba(255, 68, 0, 0.2);
+	transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary:hover {
+	transform: scale(1.05);
+	box-shadow: 0 8px 25px rgba(255, 68, 0, 0.3);
+}
+
+// Swiper Enhancements
+.swiper-hero .swiper-slide img {
+	border-radius: 24px;
+}
+
+// AOS Helper
+[data-aos] {
+	pointer-events: none;
+}
+
+.aos-animate {
+	pointer-events: auto;
+}
